@@ -1,0 +1,87 @@
+/**
+ * @module          Signup
+ * @author          cms-lab
+ * @copyright       2014-2015 cms-lab
+ * @link            http://www.cms-lab.com
+ * @license         GNU GPL http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @license_terms   none
+ *
+ */
+ 
+#register_header_container  {
+    background: none repeat scroll 0 0 transparent;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#navi_header {
+    border-bottom: 1px solid silver;
+    height: 53px;
+}
+
+#top_menu {
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    width: auto;
+}
+
+#register_content_container  {
+    margin: 0 auto 24px;
+    width: 100%;
+}
+ 
+fieldset {
+    margin-bottom: 3em;
+    padding: 1.5em 1.5em 1.5em 7.5em;
+}
+
+legend {
+    color: black;
+    font-weight: bold;
+    margin-left: -6em;
+    opacity: 0.6;
+}
+
+.spacer {
+    height: 20px;
+	width:100%;
+}
+
+.ui.form .field  {
+    margin: 0 0 0.6em;
+}
+
+.ui.checkbox.custom_checkbox {
+    font-size: 0.8em;
+    margin-top: 22px !important;
+}
+
+input[type="submit"], button[type="submit"], input.submit, button.submit {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="reset"], button[type="reset"], input.reset[type="button"], input.reset, button.reset, span.button.reset, input.cancel[type="button"], input.cancel, button.cancel, span.button.cancel, input.delete[type="button"], input.delete, button.delete, span.button.delete {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover, span.button:hover {
+	border: 0px solid #666;
+}
+
+.ui.buttons .disabled.button, .ui.disabled.button, .ui.disabled.button.active, .ui.disabled.button:hover {
+    background-color: #eeeeee !important;
+    opacity: 0.8 !important;
+}
+
+img.module_icon {
+padding-left:6%;
+}
