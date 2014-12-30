@@ -1,0 +1,180 @@
+{#
+/**
+ * @module          Signup
+ * @author          cms-lab
+ * @copyright       2014-2015 cms-lab
+ * @link            http://www.cms-lab.com
+ * @license         GNU GPL http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @license_terms   none
+ *
+ */
+ #}
+ 
+<!-- custom template for account/preferences_form.php: LEPTON_URL/templates/lepton/frontend/login/templates -->
+<!-- start twig content -->
+{% autoescape false %}
+{% if RESULT_MESSAGE != "" %}
+		<div class="ui warning fluid message">
+			{{ RESULT_MESSAGE }}
+		</div>
+{% endif %}
+<noscript>
+		<div class="ui negative fluid message">
+			<div class="header">{{ TEXT.ERROR }}</div>
+			{{ TEXT.ENABLE_JAVASCRIPT }}
+		</div>
+</noscript>
+
+	<div class="ui basic segment">
+		<h3 class="ui header">{{ HEADING.MY_SETTINGS }}</h3>				
+		<div class="ui basic form segment">
+			<form name="user" id="profile" action="{{ PREFERENCES_URL }}" method="post" onsubmit="return pf_check_form();">
+				<input type="hidden" name="user_id" value="{{ USER_ID }}" />
+				<input type="hidden" name="hash" value="{{ HASH }}" />
+				<input type="hidden" name="r_time" value="{{ r_time }}" />
+				<input type="hidden" name="save" value="account_settings" />			
+				
+				<fieldset>
+					<legend>{{ MOD_SIGNUP.PERS_SETTINGS }}</legend>			
+					<div class="field">
+						<label>{{ TEXT.DISPLAY_NAME }}</label>
+						<div class="ui icon input">
+							<input type="text" name="display_name" value="{{ DISPLAY_NAME }}" >
+							<i class="unhide icon"></i>
+						</div>
+					</div>
+					
+					<div class="spacer"></div>
+										
+					<div class="two fields">
+						<div class="field">
+							<label>{{ TEXT.LANGUAGE }}</label>
+							<select class="ui dropdown" name="language">
+								{% for lang in language %}
+								<option value="{{ lang.LANG_CODE }}" {{ lang.LANG_SELECTED|raw }}>{{ lang.LANG_NAME }} ({{ lang.LANG_CODE }})</option>
+								{% endfor %}
+							</select>
+						</div>	
+						<div class="field">
+							<label>{{  TEXT.TIMEZONE }}</label>
+							<select class="ui dropdown" name="timezone_string">
+								{% for time in timezone %}
+								<option value="{{time.TIMEZONE_NAME }}" {{ time.TIMEZONE_SELECTED }}>{{ time.TIMEZONE_NAME }}</option>
+								{% endfor %}
+							</select>
+						</div>									
+					</div>					
+
+					<div class="spacer"></div>
+					
+					<div class="two fields">
+						<div class="field">
+							<label>{{ TEXT.DATE_FORMAT }}</label>
+							<select class="ui dropdown"  name="date_format">
+								<option value="">{{ TEXT.PLEASE_SELECT }}...</option>
+								{% for date in date_format %}
+								<option value="{{date. DATE_FORMAT_VALUE }}" {{ date.DATE_FORMAT_SELECTED }}>{{ date.DATE_FORMAT_TITLE }}</option>
+								{% endfor %}
+							</select>
+						</div>	
+						<div class="field">
+							<label>{{ TEXT.TIME_FORMAT }}</label>
+							<select class="ui dropdown" name="time_format">
+								<option value="">{{ TEXT.PLEASE_SELECT }}...</option>
+								{% for time in time_format %}
+								<option value="{{ time.TIME_FORMAT_VALUE }}" {{ time.TIME_FORMAT_SELECTED }}>{{ time.TIME_FORMAT_TITLE }}</option>
+								{% endfor %}
+							</select>
+						</div>									
+					</div>					
+
+					<div class="spacer"></div>					
+					
+				</fieldset>
+				
+				<fieldset>
+					<legend>{{ HEADING.MY_EMAIL }}</legend>
+					<div class=" field">
+						<label>{{ TEXT.EMAIL_ADDRESS }}</label>
+						<div class="ui icon input">									  
+							<input name="email" value="{{ GET_EMAIL }}" type="email">
+							<i class="mail icon"></i>
+						</div>
+					</div>
+					<div class="spacer"></div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>{{ HEADING.MY_PASSWORD }}</legend>
+					<div class="two fields">
+						<div class=" field">
+							<label>{{ TEXT.NEW_PASSWORD }}</label>
+							<div class="ui icon input">									  
+								<input type="password" name="new_password" />
+								<i class="lock icon"></i>
+							</div>
+						</div>
+						<div class=" field">
+							<label>{{TEXT.RETYPE_NEW_PASSWORD }}</label>
+							<div class="ui icon input">									  
+								<input type="password" name="new_password2" />
+								<i class="lock icon"></i>
+							</div>
+						</div>						
+					</div>
+					<div class="spacer"></div>					
+				</fieldset>	
+
+				<fieldset>
+					<legend>{{ TEXT.NEED_CURRENT_PASSWORD }}</legend>
+					<div class=" field">
+						<label>{{ TEXT.CURRENT_PASSWORD }}</label>
+						<div class="ui icon input">									  
+							<input type="password" name="current_password" id="current_password" onkeyup="check_input(this);"/>
+							<i class="lock icon"></i>
+						</div>
+					</div>
+					<div class="spacer"></div>
+				</fieldset>				
+
+				<div class="spacer"></div>
+				<div class="ui submit button"><input type="submit" name="submit" value="{{ TEXT.SAVE }}" /></div>
+				<div class="ui submit button"><input type="reset" name="reset" value="{{ TEXT.RESET }}" /></div>
+				<div class="spacer"></div>
+				
+			</form>
+		</div>
+	</div>
+
+<script type="text/javascript">
+function pf_check_form() {
+	var ref = document.getElementById("current_password");
+	if (ref) {
+		if (ref.value == "") {
+			alert ("Please confirm the changes by your current password!");
+			return false;
+		} else {
+			return true;
+		}
+	}
+	return false;
+}
+
+function check_input(aRef) {
+	var ref = document.getElementById("user_submit");
+	if (aRef.value == "") {
+		ref.disabled = true;
+	} else {
+		ref.disabled = (aRef.value.length >= {{ AUTH_MIN_LOGIN_LENGTH }}) ? false : true;
+	}
+}
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+$('select.dropdown')
+  .dropdown()
+;
+/* ]]> */
+</script>
+{% endautoescape %}
+<!-- end twig content -->

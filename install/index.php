@@ -29,17 +29,6 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-/**
- *	extend standard user table
- *
- */
 
-	require_once( dirname(__FILE__)."/install/alter_tables.php");
-
-/**
- *	remove install directory
- *  to prevent tables from being damaged
- */ 
-rm_full_dir(LEPTON_PATH."/modules/register/install");
 
 ?>

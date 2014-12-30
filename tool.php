@@ -29,38 +29,7 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-echo "Backend - at this time there is nothing to edit here.";
-
-/**
- *	Try to laod the correct language-file
- */
-$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
-require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
-
-/**
- *	Try to get the parser
- */
-global $parser, $loader;
-if (!isset($parser))
-{
-	require_once( LEPTON_PATH."/modules/lib_twig/library.php" );
-}
-
-require(dirname(__FILE__)."/info.php");
-
-$loader->prependPath( dirname(__FILE__)."/templates/backend/", $module_directory );
-
-/**
- *	OverView
- */
-$template_values = array(
-	'overview'	=> "Übersicht"
-);
-
-echo $parser->render(
-	"@".$module_directory.'/overview.lte',
-	$template_values
-);
+echo "Backend - there is nothing to edit or display here.";
 
 
 ?>

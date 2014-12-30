@@ -31,33 +31,9 @@ if (defined('LEPTON_PATH')) {
 
 // alter standard user table
 	$table = TABLE_PREFIX .'users'; 
-	$database->query("ALTER TABLE `".$table."`  DROP `reg_code`, `contact_type`, `timestamp`  ");
-
-/**
- *	remove module tables from database
- */ 	
-$tables = array (
-	TABLE_PREFIX."mod_2contact_contacts",
-	TABLE_PREFIX."mod_2contact_country"
-);
-
-$all_jobs = array();
-
-
-//	Delete the tables
-$query = "DROP TABLE IF EXISTS `".$tables[0]."`,`".$tables[1]."`";
-
-$all_jobs[] = $query;
-
-foreach( $all_jobs as $q ) {
+	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `reg_code` ");
+	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `contact_type` ");
+	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `registered` ");
+	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `timestamp` ");	
 	
-	$database->query($q);
-	
-	if ( $database->is_error() ) 
-		$admin->print_error($database->get_error(), $js_back);
-
-}
-	
-	
-
 ?>

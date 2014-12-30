@@ -1,0 +1,123 @@
+{#
+/**
+ * @module          Signup
+ * @author          cms-lab
+ * @copyright       2014-2015 cms-lab
+ * @link            http://www.cms-lab.com
+ * @license         GNU GPL http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @license_terms   none
+ *
+ */
+ #}
+ 
+<!-- custom template for account/signup_form.php: LEPTON_URL/templates/lepton/frontend/login/templates -->
+{% autoescape false %}
+<div id="register_content_container">
+
+			<div class="ui basic segment">
+				<div class="ui warning message">
+					<i class="big warning icon"></i>
+					{{ MOD_REGISTER.CHOSE_CONTACT_TYPE }}
+				</div>		
+			
+	
+			
+				<div class="ui basic form segment">
+					<form name="user" action="{{ SIGNUP_URL }}" method="post">
+						<input type='hidden' name='submitted_when' value='{{ submitted_when }}' />
+						
+						<!-- BEGIN asp_block -->
+							<div style="display:none;">
+								<input type="hidden" name="submitted_when" value="{{ submitted_when }}" />
+								<p class="nixhier">
+									email-address:
+									<label for="email-address">Leave this field email-address blank:</label>
+									<input id="email-address" name="email-address" size="60" value="" /><br />
+									username (id):
+									<label for="name">Leave this field name blank:</label>
+									<input id="name" name="name" size="60" value="" /><br />
+									Full Name:
+									<label for="full_name">Leave this field full_name blank:</label>
+									<input id="full_name" name="full_name" size="60" value="" /><br />
+								</p>
+							</div>
+						<!-- END asp_block -->
+						
+						<fieldset>
+							<legend>{{ TEXT.SIGNUP }}</legend>
+								<div class="required field">
+								<label>{{ MOD_REGISTER.CONTACT_TYPE }}</label>
+									<select class="ui selection dropdown" name="type" id="type">
+										<option value="PERSON">{{ MOD_REGISTER.PERSON }}</option>
+										<option value="COMPANY">{{ MOD_REGISTER.COMPANY }}</option>
+									</select>
+								</div>
+								
+								<div class="spacer"></div>
+								
+									<div class="required field">
+									  <label>{{ TEXT.USERNAME }}</label>
+									  <div class="ui icon input">									  
+										<input name="{{ TEXT.USERNAME }}" placeholder="{{ TEXT.USERNAME }}" type="text">
+										<i class="user icon"></i>
+									  </div>
+									</div>
+									<div class="spacer"></div>									
+									<div class="required field">
+									  <label>{{ TEXT.DISPLAY_NAME }}</label>
+									  <div class="ui icon input">									  
+										<input name="{{ TEXT.DISPLAY_NAME }}" placeholder="{{ TEXT.DISPLAY_NAME }}" type="text">
+										<i class="user icon"></i>
+									  </div>
+									</div>									
+									<div class="spacer"></div>
+									<div class="required field">
+									  <label>{{ TEXT.EMAIL_ADDRESS }}</label>
+									  <div class="ui icon input">									  
+										<input name="{{ TEXT_USERNAME }}" placeholder="{{ TEXT.EMAIL }}" type="email">
+										<i class="mail icon"></i>
+									  </div>
+									</div>								
+
+								
+								<div class="spacer"></div>
+								<div class="inline field">
+									<div class="ui required checkbox">
+									  <input type="checkbox">
+									  <label>{{ MOD_REGISTER.AGREE_TERMS }}</label>
+									</div>
+								</div>															
+								<div class="spacer"></div>
+								{{ TEXT_VERIFICATION }} {{ CALL_CAPTCHA|raw }}
+								<div class="spacer"></div>
+								<div class="ui submit button"><input type="submit" name="submit" value="{{ TEXT.SIGNUP }}" /></div>
+								<div class="spacer"></div>							
+						</fieldset>
+						
+						<div class="ui error message">
+							  <i class="close icon"></i>
+							  <div class="header">
+								There was some errors with your submission
+							  </div>
+							  <ul class="list">
+								<li>You must include both a upper and lower case letters in your password.</li>
+								<li>You need to select your home country.</li>
+							  </ul>
+						</div>
+						
+					</form>						
+				</div>
+			</div>
+</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+$('.ui.dropdown')
+  .dropdown()
+;
+
+$('.ui.checkbox')
+  .checkbox()
+;
+/* ]]> */
+</script>
+{% endautoescape %}

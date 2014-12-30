@@ -29,8 +29,8 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-global $MOD_REGISTER;
-$MOD_REGISTER = array(
+global $MOD_SIGNUP;
+$MOD_SIGNUP = array(
 	'LOGIN'	=> "Please login",
 	'OR'	=> "or",
 	'REGISTER'	=> "sign up",
@@ -40,6 +40,7 @@ $MOD_REGISTER = array(
 	'PERSON'	=> "Person",
 	'COMPANY'	=> "Company",
 	'RETYPE_PASSWORD'	=> "Retype Password",
+	'PERS_SETTINGS'	=> "Personal Settings",
 );
 
 ?>

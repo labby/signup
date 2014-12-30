@@ -1,0 +1,86 @@
+{#
+/**
+ * @module          Signup
+ * @author          cms-lab
+ * @copyright       2014-2015 cms-lab
+ * @link            http://www.cms-lab.com
+ * @license         GNU GPL http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @license_terms   none
+ *
+ */
+ #}
+ 
+<!-- custom template for account/login_form.php: LEPTON_URL/templates/lepton/frontend/login/templates -->
+{% autoescape false %}
+<div id="register_content_container">
+
+			<div class="ui basic segment">
+				<div class="ui warning message">
+					<i class="warning icon"></i>
+					 {{ MOD_REGISTER.LOGIN }} {{ MOD_REGISTER.OR }} <a href="{{ SIGNUP_URL }}">{{ MOD_REGISTER.REGISTER }}</a>
+				</div>		
+				
+				<div class="ui basic form segment">
+					<form name="{{ FORM_NAME }}" id="{{ FORM_NAME }}" class="ui form" action="{{ LOGIN_URL }}" method="post">
+						<input type="hidden" name="username_fieldname" value="{{ TEXT_USERNAME }}" />
+						<input type="hidden" name="hash" value="{{ HASH }}" />
+						<input type="hidden" name="password_fieldname" value="{{ TEXT_PASSWORD }}" />
+						<input type="hidden" name="redirect" value="{{ REDIRECT_URL }}" />
+						<fieldset>
+							<legend>{{ TEXT.LOGIN }}</legend>
+								
+								<div class="two fields">
+								
+									<div class="required field">
+									  <label>{{ TEXT.USERNAME }}</label>
+									  <div class="ui icon input">									  
+										<input name="{{ TEXT.USERNAME }}" placeholder="{{ TEXT.USERNAME }}" type="text">
+										<i class="user icon"></i>
+									  </div>
+									</div>
+								
+									<div class="required field">
+									  <label>{{ TEXT.PASSWORD }}</label>
+									  <div class="ui icon input">
+										<input type="password" name="{{ TEXT_PASSWORD }}">
+										<i class="lock icon"></i>
+									  </div>
+								
+									</div>										
+								
+								</div>
+																
+								<div class="spacer"></div>
+								<div class="ui submit button"><input type="submit" name="submit" value="{{ TEXT.LOGIN }}" /></div>
+								<div class="spacer"></div>								
+						</fieldset>
+					</form>
+				</div>
+				
+				<div class="ui warning message">
+					<i class="red help icon"></i>
+					<a href="{{ FORGOT_URL }}">{{ TEXT.FORGOT_DETAILS }}</a>
+				</div>	
+			</div>
+												
+</div>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+/*
+$('.ui.form')
+  .form({
+    email: {
+      identifier : '{{ TEXT_USERNAME }}',
+      rules: [
+        {
+          type   : 'email',
+          prompt : 'Please enter a valid e-mail'
+        }
+      ]
+    }
+})
+*/
+	/* ]]> */
+</script>
+{% endautoescape %}

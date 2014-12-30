@@ -1,0 +1,47 @@
+{#
+/**
+ * @module          Signup
+ * @author          cms-lab
+ * @copyright       2014-2015 cms-lab
+ * @link            http://www.cms-lab.com
+ * @license         GNU GPL http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @license_terms   none
+ *
+ */
+ #}
+<!-- custom template for account/forgot_form.php: LEPTON_URL/templates/lepton/frontend/login/templates -->
+{% autoescape false %}
+<div id="register_content_container">
+
+			<div class="ui basic segment">
+				<div class="ui warning message" style="color: #{{ MESSAGE_COLOR }}">
+					<i class="big warning icon"></i>
+					{{ MESSAGE }}
+				</div>		
+						
+				<div class="ui basic form segment">
+								
+					<form name="forgot_pass"  action="{{ FORGOT_URL }}" method="post">
+						<input type="hidden" name="url" value="{{ URL }}" />
+						<fieldset>
+							<legend>{{ TEXT_FORGOT }}</legend>							
+								<div class="field">
+									<div class="required field">
+									  <label>{{ TEXT.EMAIL }}</label>
+										<div class="ui icon input">									  
+											<input name="email" placeholder="{{ TEXT.EMAIL }}" type="email" />
+											<i class="mail icon"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="spacer"></div>
+								<div class="ui submit button"><input type="submit" name="submit" value="{{ TEXT.SEND_DETAILS }}" /></div>
+								<div class="spacer"></div>							
+						</fieldset>
+					</form>						
+				</div>
+			</div>
+			
+</div>
+{% endautoescape %}
