@@ -33,8 +33,7 @@ if (defined('LEPTON_PATH')) {
  *	extend standard user table
  *
  */
-
-	require_once( dirname(__FILE__)."/install/alter_tables.php");
+require_once( dirname(__FILE__)."/install/alter_tables.php");
 
 /**
  *	remove install directory
