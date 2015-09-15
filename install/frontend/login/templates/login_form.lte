@@ -42,7 +42,7 @@
 									<div class="required field">
 									  <label>{{ TEXT.PASSWORD }}</label>
 									  <div class="ui icon input">
-										<input type="password" name="{{ TEXT_PASSWORD }}">
+										<input type="password" name="{{ TEXT.PASSWORD }}">
 										<i class="lock icon"></i>
 									  </div>
 								
