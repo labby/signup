@@ -29,11 +29,18 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-// alter standard user table
-	$table = TABLE_PREFIX .'users'; 
-	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `reg_code` ");
-	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `contact_type` ");
-	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `registered` ");
-	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `unix_time` ");	
-	
+global $MOD_SIGNUP;
+$MOD_SIGNUP = array(
+	'LOGIN'	=> "Please login",
+	'OR'	=> "or",
+	'REGISTER'	=> "sign up",
+	'CHOSE_CONTACT_TYPE'	=> '<p>Please chose a sign-up type  <br />Notice: the type cannot be changed after registration!</p>',
+	'CONTACT_TYPE'	=> "Sign-Up Type",
+	'AGREE_TERMS'	=> "I agree to the terms and conditions",
+	'PERSON'	=> "Person",
+	'COMPANY'	=> "Company",
+	'RETYPE_PASSWORD'	=> "Retype Password",
+	'PERS_SETTINGS'	=> "Personal Settings",
+);
+
 ?>
