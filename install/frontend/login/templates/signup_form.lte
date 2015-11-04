@@ -15,16 +15,16 @@
 <div id="register_content_container">
 
 			<div class="ui basic segment">
-				<div class="ui warning message">
-					<i class="big warning icon"></i>
-					{{ MOD_REGISTER.CHOSE_CONTACT_TYPE }}
+				<div class="ui warning message">					
+					{{ MOD_SIGNUP.CHOSE_CONTACT_TYPE }}
 				</div>		
-			
-	
-			
+						
 				<div class="ui basic form segment">
-					<form name="user" action="{{ SIGNUP_URL }}" method="post">
+					{% if(signup_message!='') %}<div class="ui positive message"> {{ signup_message }}</div>	{% endif %}
+					{% if(signup_error!='') %}<div class="ui error message"> {{ signup_error }}</div>	{% endif %}	
+					<form class="ui form" name="user" action="{{ SIGNUP_URL }}" method="post">
 						<input type='hidden' name='submitted_when' value='{{ submitted_when }}' />
+						<input type='hidden' name='signup' value='1' />
 						
 						<!-- BEGIN asp_block -->
 							<div style="display:none;">
@@ -46,10 +46,10 @@
 						<fieldset>
 							<legend>{{ TEXT.SIGNUP }}</legend>
 								<div class="required field">
-								<label>{{ MOD_REGISTER.CONTACT_TYPE }}</label>
+								<label>{{ MOD_SIGNUP.CONTACT_TYPE }}</label>
 									<select class="ui selection dropdown" name="type" id="type">
-										<option value="PERSON">{{ MOD_REGISTER.PERSON }}</option>
-										<option value="COMPANY">{{ MOD_REGISTER.COMPANY }}</option>
+										<option value="PERSON">{{ MOD_SIGNUP.PERSON }}</option>
+										<option value="COMPANY">{{ MOD_SIGNUP.COMPANY }}</option>
 									</select>
 								</div>
 								
@@ -58,7 +58,7 @@
 									<div class="required field">
 									  <label>{{ TEXT.USERNAME }}</label>
 									  <div class="ui icon input">									  
-										<input name="{{ TEXT.USERNAME }}" placeholder="{{ TEXT.USERNAME }}" type="text">
+										<input name="username" value="" placeholder="{{ TEXT.USERNAME }}" type="text">
 										<i class="user icon"></i>
 									  </div>
 									</div>
@@ -66,7 +66,7 @@
 									<div class="required field">
 									  <label>{{ TEXT.DISPLAY_NAME }}</label>
 									  <div class="ui icon input">									  
-										<input name="{{ TEXT.DISPLAY_NAME }}" placeholder="{{ TEXT.DISPLAY_NAME }}" type="text">
+										<input name="display_name" value="" placeholder="{{ TEXT.DISPLAY_NAME }}" type="text">
 										<i class="user icon"></i>
 									  </div>
 									</div>									
@@ -74,7 +74,7 @@
 									<div class="required field">
 									  <label>{{ TEXT.EMAIL_ADDRESS }}</label>
 									  <div class="ui icon input">									  
-										<input name="{{ TEXT_USERNAME }}" placeholder="{{ TEXT.EMAIL }}" type="email">
+										<input name="email" id="email" value="" placeholder="{{ TEXT.EMAIL }}" type="email">
 										<i class="mail icon"></i>
 									  </div>
 									</div>								
@@ -83,28 +83,19 @@
 								<div class="spacer"></div>
 								<div class="inline field">
 									<div class="ui required checkbox">
-									  <input type="checkbox">
-									  <label>{{ MOD_REGISTER.AGREE_TERMS }}</label>
+									  <input type="checkbox" id="terms">
+									  <label>{{ MOD_SIGNUP.AGREE_TERMS }}</label>
 									</div>
 								</div>															
 								<div class="spacer"></div>
 								{{ TEXT_VERIFICATION }} {{ CALL_CAPTCHA|raw }}
 								<div class="spacer"></div>
-								<div class="ui submit button"><input type="submit" name="submit" value="{{ TEXT.SIGNUP }}" /></div>
+								<div class="ui submit button"><input type="submit" value="{{ MOD_SIGNUP.REGISTER }}" /></div>
 								<div class="spacer"></div>							
 						</fieldset>
-						
 						<div class="ui error message">
-							  <i class="close icon"></i>
-							  <div class="header">
-								There was some errors with your submission
-							  </div>
-							  <ul class="list">
-								<li>You must include both a upper and lower case letters in your password.</li>
-								<li>You need to select your home country.</li>
-							  </ul>
-						</div>
-						
+
+						</div>												
 					</form>						
 				</div>
 			</div>
@@ -118,6 +109,29 @@ $('.ui.dropdown')
 $('.ui.checkbox')
   .checkbox()
 ;
+
+$('.ui.form')
+  .form({
+    email: {
+		identifier  : 'email',
+        rules: [
+          {
+			type   : 'email',
+			prompt : 'Please enter a valid e-mail'
+				}
+			]
+		},
+	terms: {
+        identifier: 'terms',
+        rules: [
+          {
+			type   : 'checked',
+			prompt : '{{ MOD_SIGNUP_MESSAGE.terms }}'
+				}
+			]
+		}	  
+  })
+;	
 /* ]]> */
 </script>
 {% endautoescape %}

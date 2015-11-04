@@ -51,7 +51,7 @@ $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
  	$table = TABLE_PREFIX .'users'; 
 	$database->query("ALTER TABLE `".$table."`  ADD `contact_type` VARCHAR(32) NOT NULL ");
 	$database->query("ALTER TABLE `".$table."`  ADD `registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ");
-	$database->query("ALTER TABLE `".$table."`  ADD `reg_code` VARCHAR(64) NOT NULL ");	
+	$database->query("ALTER TABLE `".$table."`  ADD `hash` VARCHAR(64) NOT NULL ");	
 	$database->query("ALTER TABLE `".$table."`  ADD `unix_time` VARCHAR(14) NOT NULL ");	
 
 	

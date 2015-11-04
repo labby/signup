@@ -29,7 +29,6 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-global $MOD_SIGNUP;
 $MOD_SIGNUP = array(
 	'LOGIN'	=> "Please login",
 	'OR'	=> "or",
@@ -41,6 +40,15 @@ $MOD_SIGNUP = array(
 	'COMPANY'	=> "Company",
 	'RETYPE_PASSWORD'	=> "Retype Password",
 	'PERS_SETTINGS'	=> "Personal Settings",
+);
+
+$MOD_SIGNUP_MESSAGE = array(
+	'terms'				=> "You have to agree to the terms and conditions",
+	'wrong_captcha'		=> "Please enter a valid result",	
+	'already_signup'	=> "You have already signed up",
+	'signup_subject'	=> "Your Signup",
+	'signup_text'		=> "You have signed up.<br />To verify your email you have to click following link:<br /><a href='%s'>Verify my email</a>",
+	'signup_info'		=> "Thanks for signing up. <br /> You will receive an email to verify your account.<br />Please check also your spamfolder.",	
 );
 
 ?>

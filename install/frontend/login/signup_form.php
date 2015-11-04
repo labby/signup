@@ -36,28 +36,21 @@ else
 }
 // end include class.secure.php
 
-//initialize twig template engine
-	global $parser;		// twig parser
-	global $loader;		// twig file manager
-	global $MOD_SIGNUP;
-	global $TEXT;
+/**	
+ *	get the template-engine.
+ */
+global $parser, $loader, $MOD_SIGNUP, $TEXT;
 if (!is_object($parser)) require_once( LEPTON_PATH."/modules/lib_twig/library.php" );
 
 // prependpath to make sure twig is looking in this module template folder first
 $loader->prependPath( dirname(__FILE__)."/templates/" );
 
+// load language file 
 if (file_exists(LEPTON_PATH."/modules/signup/languages/".LANGUAGE.".php")) {
 	require( LEPTON_PATH."/modules/signup/languages/".LANGUAGE.".php");
 } else {
 	require( LEPTON_PATH."/modules/signup/languages/EN.php" );
 }
-
-/**
- *	Build the secure hash
- *
- */
-$hash = sha1( microtime().$_SERVER['HTTP_USER_AGENT'] );
-$_SESSION['wb_apf_hash'] = $hash;
 
 /**
  *	Getting the captha
@@ -67,36 +60,39 @@ ob_start();
 	call_captcha();
 	$captcha = ob_get_clean();
 
-unset($_SESSION['result_message']);
+//unset($_SESSION['result_message']);
 
-$submitted_when = time();
-$_SESSION['submitted_when'] = $submitted_when;
+// create timestamp for multiple use
+$timestamp = date('Y-m-d H:i:s',time());
+$unix = time();
+
+// create hash for multiple use
+$hash = md5(date('Y-m-d H:i:s',time()));
+
+$_SESSION['submitted_when'] = $unix;
 
 unset($_SESSION['result_message']);
 
 $data = array(
-	'MOD_REGISTER' => $MOD_SIGNUP,
-	'TEXT' => $TEXT,
+	'MOD_SIGNUP' 	=> $MOD_SIGNUP,
+	'TEXT' 			=> $TEXT,
 	'TEMPLATE_DIR'	=>	TEMPLATE_DIR,
-	'SIGNUP_URL'	=>	SIGNUP_URL,
+	'SIGNUP_URL'	=>	LEPTON_URL."/modules/signup/signup.php",
 	'LOGOUT_URL'	=>	LOGOUT_URL,
-	'FORGOT_URL'	=>	FORGOT_URL,  
-	'TEXT_SIGNUP'	=>	$TEXT['SIGNUP'],
-	'TEXT_USERNAME'		=>	$TEXT['USERNAME'],
-	'TEXT_DISPLAY_NAME'	=>	$TEXT['DISPLAY_NAME'],
-	'TEXT_FULL_NAME'	=>	$TEXT['FULL_NAME'],
-	'TEXT_EMAIL'	    =>	$TEXT['EMAIL'],
-	'CALL_CAPTCHA'		=>	$captcha,     
-	'TEXT_LOGIN'		=>	$MENU['LOGIN'],
-	'TEXT_RESET'		=>	$TEXT['RESET'],
-	'HASH'				=>	$hash, 
-	'TEXT_VERIFICATION' => $TEXT['VERIFICATION'],
-	'submitted_when'	=> $submitted_when
-);
+	'FORGOT_URL'	=>	FORGOT_URL,
+	'CALL_CAPTCHA'	=>	$captcha,     
+	'HASH'			=>	$hash, 
+	'submitted_when'=> $unix,
+	'signup_message'=> (isset($_SESSION["signup_message"]) ? $_SESSION["signup_message"] : ''),
+	'signup_error'	=> (isset($_SESSION["signup_error"]) ? $_SESSION["signup_error"] : '')
+	);
 		
 echo $parser->render( 
 	"signup_form.lte",	//	template-filename
 	$data				//	template-data
 );
+
+if (isset($_SESSION["signup_message"])) unset ($_SESSION["signup_message"]);
+if (isset($_SESSION["signup_error"])) unset ($_SESSION["signup_error"]);
 
 ?>
