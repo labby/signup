@@ -15,7 +15,8 @@ if (!is_object($lepton_filemanager)) require_once( "../../framework/class.lepton
 
 $files_to_register = array(
 
-	'/modules/signup/signup.php'
+	'/modules/signup/signup.php',		
+	'/modules/signup/headers.inc.php'
 );
 
 $lepton_filemanager->register( $files_to_register );

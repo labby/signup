@@ -34,7 +34,11 @@ if (true === $debug) {
 	ini_set('display_errors', 1);
 	error_reporting(-1);
 } 
-
+// check $_POST for maschines
+if(isset($_POST['full_name']) and ($_POST['full_name'] != '')) {
+		header("Location: ".$_SERVER['HTTP_REFERER']." ");
+		die();
+} 
 
 // check $_POST
 if(!isset($_POST['username']) OR!is_numeric($_POST['submitted_when'])) {
@@ -54,14 +58,9 @@ global $MOD_SIGNUP, $MOD_SIGNUP_MESSAGE, $TEXT;
 
 if ($_SESSION['captcha'] != $_POST['captcha']) {
 	$_SESSION["signup_error"] = $MOD_SIGNUP_MESSAGE['wrong_captcha'];
-
 	header("Location: ".$_SERVER['HTTP_REFERER']." ");
-	die();	
-}	
-
-die(print_r($_POST['captcha']));
-
-
+	die();
+}
 
 //Get all settings 
 $settings = array();
@@ -84,6 +83,7 @@ foreach ($email_settings as $name=>$value) {
 		if ($name == $temp['name'] ) $email_settings[$name] = $temp['value'];
 	}
 }
+
 
 
 //Get group_id from inserted group
@@ -119,10 +119,11 @@ $hash = md5(date('Y-m-d H:i:s',time()));
 // create confirmation link
 $confirm_signup = $_SERVER['HTTP_REFERER'].'?hash='.$hash;
 
+// include phpmailer
 require_once (LEPTON_PATH.'/modules/lib_phpmailer/library.php');
 
 // prevent double signup
-if ($double == true and $existing_users['hash'] != ''  ){
+if ($double == true){
 	$_SESSION["signup_error"] = $MOD_SIGNUP_MESSAGE['already_signup'];
 	header("Location: ".$_SERVER['HTTP_REFERER']." ");
 	die();

@@ -18,11 +18,13 @@
 				<div class="ui warning message">					
 					{{ MOD_SIGNUP.CHOSE_CONTACT_TYPE }}
 				</div>		
-						
-				<div class="ui basic form segment">
-					{% if(signup_message!='') %}<div class="ui positive message"> {{ signup_message }}</div>	{% endif %}
-					{% if(signup_error!='') %}<div class="ui error message"> {{ signup_error }}</div>	{% endif %}	
+			
+				<div class="ui basic segment">
+												{% if(signup_message!='') %}<div class="ui positive message"> {{ signup_message }}</div>	{% endif %}
+			{% if(signup_error !='') %}<div class="ui error message">{{ signup_error }}</div> {% endif %}
+
 					<form class="ui form" name="user" action="{{ SIGNUP_URL }}" method="post">
+
 						<input type='hidden' name='submitted_when' value='{{ submitted_when }}' />
 						<input type='hidden' name='signup' value='1' />
 						
@@ -88,14 +90,12 @@
 									</div>
 								</div>															
 								<div class="spacer"></div>
-								{{ TEXT_VERIFICATION }} {{ CALL_CAPTCHA|raw }}
+								{{ TEXT_VERIFICATION }} {{ CALL_CAPTCHA }}
 								<div class="spacer"></div>
 								<div class="ui submit button"><input type="submit" value="{{ MOD_SIGNUP.REGISTER }}" /></div>
 								<div class="spacer"></div>							
 						</fieldset>
-						<div class="ui error message">
-
-						</div>												
+											
 					</form>						
 				</div>
 			</div>
@@ -126,7 +126,7 @@ $('.ui.form')
         rules: [
           {
 			type   : 'checked',
-			prompt : '{{ MOD_SIGNUP_MESSAGE.terms }}'
+			prompt : '{{ MOD_SIGNUP.terms }}'
 				}
 			]
 		}	  

@@ -33,50 +33,39 @@ if (defined('LEPTON_PATH')) {
 $timestamp = date('Y-m-d H:i:s',time());
 $unix = time();
 
-// delete subscribers without confirmation if newsletter page is called if subscription is not confirmed within 48 hours = 172800 seconds
+// delete users without confirmation if signup is not confirmed within 48 hours = 172800 seconds while signup page is called 
 	$database->execute_query(
-		"DELETE FROM `".TABLE_PREFIX."mod_law_newsletter_subscription`WHERE '".$unix."' > `sub_unix`+172800 AND `sub_signin_conf` = '0000-00-00 00:00:00' "
+		"DELETE FROM `".TABLE_PREFIX."users`WHERE '".$unix."' > `time_unix`+172800 AND `statusflags` = 16 "
 	);	
 
-//Get all settings	
-$settings = array();
-$database->execute_query(
-"SELECT * FROM ".TABLE_PREFIX."mod_law_newsletter_settings",
-TRUE,
-$settings, FALSE
-);	
 	
 // email verification via hash
 if (isset($_GET['hash']) ) {
-	$newsletter = array();
+	$new_user = array();
 	$database->execute_query(
-		"SELECT * FROM `".TABLE_PREFIX."mod_law_newsletter_subscription` WHERE `sub_hash` = '".$_GET['hash']."'",
+		"SELECT * FROM `".TABLE_PREFIX."users` WHERE `hash` = '".$_GET['hash']."'",
 		true,
-		$newsletter,
+		$new_user,
 		false
 	);
 
 	// no hash in database
-	if (count ($newsletter)== 0){
-		$newsletter['sub_hash']	= -1;
-		$newsletter['sub_active']	= -1;		
+	if (count ($new_user)== 0){
+		$new_user['hash'] = -1;
+		$new_user['statusflags'] = -1;		
 	}
 	
-// prevent double verification subscriber
-	if( $newsletter['sub_hash'] == $_GET['hash'] and $newsletter['sub_active'] == 1 and $newsletter['sub_signin_conf'] != '0000-00-00 00:00:00' ) {
-		$_SESSION["nl_error"] = $MOD_NEWSLETTER_MESSAGE['already_subscribed'];
+// prevent double verification 
+	if( $new_user['hash'] == $_GET['hash'] and $new_user ['statusflags'] == 32 {
+		$_SESSION["signup_error"] = $MOD_SIGNUP_MESSAGE['already_verfied'];
 	}		
-// prevent double verification unsubscriber
-	elseif( $newsletter['sub_hash'] == $_GET['hash'] and $newsletter['sub_active'] != 1 and $newsletter['sub_signout_conf'] != '0000-00-00 00:00:00' ) {
-		$_SESSION["nl_error"] = $MOD_NEWSLETTER_MESSAGE['already_unsubscribed'];
-	}	
-//	elseif( $newsletter['sub_hash'] == $_GET['hash'] and $newsletter['sub_active'] == 1) {
-	elseif( count (($newsletter) == 1) and ($newsletter['sub_active'] == 1)) {
-		//	[1] Good place for testing something e.g. time from the submit
-		
+
+	elseif( count (($new_user) == 1) and ($new_user['statusflags'] == 16)) {	
 		//	[2] save current time into database
 		$fields = array(
-			'sub_signin_conf' => $timestamp
+			'registered' => $timestamp,
+			'active'	=> '1',
+			'statusflags' => '32',
 		);
 		
 		$database->build_and_execute(

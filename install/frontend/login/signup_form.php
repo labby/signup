@@ -74,6 +74,7 @@ $_SESSION['submitted_when'] = $unix;
 unset($_SESSION['result_message']);
 
 $data = array(
+//	'print'=> (print_r($_SESSION["signup_error"])),
 	'MOD_SIGNUP' 	=> $MOD_SIGNUP,
 	'TEXT' 			=> $TEXT,
 	'TEMPLATE_DIR'	=>	TEMPLATE_DIR,
@@ -82,9 +83,9 @@ $data = array(
 	'FORGOT_URL'	=>	FORGOT_URL,
 	'CALL_CAPTCHA'	=>	$captcha,     
 	'HASH'			=>	$hash, 
-	'submitted_when'=> $unix,
 	'signup_message'=> (isset($_SESSION["signup_message"]) ? $_SESSION["signup_message"] : ''),
-	'signup_error'	=> (isset($_SESSION["signup_error"]) ? $_SESSION["signup_error"] : '')
+	'signup_error'	=> (isset($_SESSION["signup_error"]) ? $_SESSION["signup_error"] : ''),
+	'submitted_when'=> $unix
 	);
 		
 echo $parser->render( 
