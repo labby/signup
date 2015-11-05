@@ -31,9 +31,9 @@ if (defined('LEPTON_PATH')) {
 
 // alter standard user table
 	$table = TABLE_PREFIX .'users'; 
-	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `reg_code` ");
 	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `contact_type` ");
 	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `registered` ");
+	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `hash` ");	
 	$database->query("ALTER TABLE `".$table."`  DROP COLUMN `unix_time` ");	
 	
 ?>
