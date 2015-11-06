@@ -30,16 +30,16 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 // delete signup/login installed templates
-if (!function_exists("rm_full_dir")) require_once( dirname(__FILE__)."/function.rm_full_dir.php");
+if (!function_exists("rm_full_dir")) require_once(LEPTON_PATH."/framework/functions/function.rm_full_dir.php");
 if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login/index.php")) {
-	rm_full_dir(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login")
+	rm_full_dir(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login");
 }
 
 // see if current theme frontend_login was modified
 if (!function_exists("rename_recursive_dirs")) require_once(LEPTON_PATH."/framework/functions/function.rename_recursive_dirs.php");
 $directory = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login_standard";
 $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
-if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login/index.php"))
+if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login_standard/index.php"))
 {
 	rename_recursive_dirs( $directory,$directory_new);
 }
