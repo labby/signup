@@ -34,6 +34,15 @@ if (true === $debug) {
 	ini_set('display_errors', 1);
 	error_reporting(-1);
 } 
+
+/**
+ *	load the correct language-file
+ */
+$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
+require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+
+global $MOD_SIGNUP, $MOD_SIGNUP_MESSAGE, $TEXT;
+
 // check $_POST for maschines
 if(isset($_POST['full_name']) and ($_POST['full_name'] != '')) {
 		header("Location: ".$_SERVER['HTTP_REFERER']." ");
@@ -48,13 +57,6 @@ if(!isset($_POST['username']) OR!is_numeric($_POST['submitted_when'])) {
 	$user = $_POST['username'];
 }
 
-/**
- *	load the correct language-file
- */
-$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
-require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
-
-global $MOD_SIGNUP, $MOD_SIGNUP_MESSAGE, $TEXT;
 
 if ($_SESSION['captcha'] != $_POST['captcha']) {
 	$_SESSION["signup_error"] = $MOD_SIGNUP_MESSAGE['wrong_captcha'];
@@ -70,7 +72,7 @@ TRUE,
 $settings, TRUE
 );
 
-// get values from settings
+// get needed values from settings
 $email_settings= array(
 'wbmailer_default_sendername' => '0',
 'server_email' => '0',
@@ -140,7 +142,7 @@ $mail->addReplyTo($email_settings['server_email'],$email_settings['wbmailer_defa
 //Set who the message is to be sent to
 $mail->addAddress($_POST['email'], $_POST['display_name']);
 //Send bcc to admin
-$mail->addBCC($email_settings['server_email'],$email_settings['wbmailer_default_sendername']);
+//$mail->addBCC($email_settings['server_email'],$email_settings['wbmailer_default_sendername']);
 //Set the subject line
 $mail->Subject = $MOD_SIGNUP_MESSAGE['signup_subject'];
 //Switch to TEXT messages

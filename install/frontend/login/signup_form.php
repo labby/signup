@@ -52,10 +52,12 @@ if (file_exists(LEPTON_PATH."/modules/signup/languages/".LANGUAGE.".php")) {
 	require( LEPTON_PATH."/modules/signup/languages/EN.php" );
 }
 
-/**
- *	Getting the captha
- *
- */
+//verify all data
+if (isset($_GET['hash']) ) {
+require_once (LEPTON_PATH."/modules/signup/signup_check.php");
+}
+
+//	Get the captha
 ob_start();
 	call_captcha();
 	$captcha = ob_get_clean();
@@ -71,16 +73,12 @@ $hash = md5(date('Y-m-d H:i:s',time()));
 
 $_SESSION['submitted_when'] = $unix;
 
-unset($_SESSION['result_message']);
-
 $data = array(
 //	'print'=> (print_r($_SESSION["signup_error"])),
 	'MOD_SIGNUP' 	=> $MOD_SIGNUP,
 	'TEXT' 			=> $TEXT,
 	'TEMPLATE_DIR'	=>	TEMPLATE_DIR,
 	'SIGNUP_URL'	=>	LEPTON_URL."/modules/signup/signup.php",
-	'LOGOUT_URL'	=>	LOGOUT_URL,
-	'FORGOT_URL'	=>	FORGOT_URL,
 	'CALL_CAPTCHA'	=>	$captcha,     
 	'HASH'			=>	$hash, 
 	'signup_message'=> (isset($_SESSION["signup_message"]) ? $_SESSION["signup_message"] : ''),

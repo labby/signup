@@ -46,9 +46,12 @@ $MOD_SIGNUP_MESSAGE = array(
 	'terms'			=> "Sie müssen den Bedingungen zustimmen",
 	'wrong_captcha'	=> "Bitte das korrekte Ergebnis eintragen!",		
 	'already_signup'=> "You have already signed up",
-	'signup_subject'=> "Your Signup",
+	'signup_subject'=> "Anmeldung",
 	'signup_text'	=> "You have signed up.<br />To verify your email you have to click following link:<br /><a href='%s'>Verify my email</a>",
 	'signup_info'	=> "Thanks for signing up. <br /> You will receive an email to verify your account.<br />Please check also your spamfolder.",
-	'already_verfied' => "Sie haben Ihre Mailadresse bereits verifiziert."	,
+	'already_verfied' => "Sie haben Ihre Mailadresse bereits verifiziert.",
+	'confirm_text'	=> "Sie haben scih auf unserer Seite angemedlet.<br />Bitte loggen Sie sich mit folgendem Passwort ein:<br />Passwort:<b>%s</b> <br/>Sie können das Passwort unter Einstellungen ändern.",	
+	'signup_confirm_info' =>"Danke für die Verifizierung der Email-Adresse. Sie sind nun registriert und können sich mit dem Passwort einloggen, dass wir Ihnen zugesendet haben.",
+	'error_info_admin'	=> "FEHLER,das sollte nicht sein.<br /> Bitte informieren Sie uns über diesen Fehler. <br /> Danke",	
 );
 ?>
