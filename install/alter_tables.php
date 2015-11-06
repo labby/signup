@@ -34,10 +34,9 @@ if (!function_exists("rename_recursive_dirs")) require_once(LEPTON_PATH."/framew
 // see if current theme has frontend_login
 $directory = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
 $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login_standard";
-if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login/index.php"));
-{
+if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login/index.php")) {
 	rename_recursive_dirs( $directory,$directory_new);
-}
+	}
 
 // move new module files to current theme
 $directory = LEPTON_PATH.'/modules/signup/install/frontend/login';
