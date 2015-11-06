@@ -32,14 +32,14 @@ if (defined('LEPTON_PATH')) {
 $MOD_SIGNUP = array(
 	'LOGIN'	=> "Please login",
 	'OR'	=> "or",
-	'REGISTER'	=> "sign up",
-	'CHOSE_CONTACT_TYPE'	=> '<p>Please chose a sign-up type  <br />Notice: the type cannot be changed after registration!</p>',
-	'CONTACT_TYPE'	=> "Sign-Up Type",
-	'AGREE_TERMS'	=> "I agree to the terms and conditions",
-	'PERSON'	=> "Person",
-	'COMPANY'	=> "Company",
+	'REGISTER'			=> "sign up",
+	'CHOSE_CONTACT_TYPE'=> '<p>Please chose a sign-up type  <br />Notice: the type cannot be changed after registration!</p>',
+	'CONTACT_TYPE'		=> "Sign-Up Type",
+	'AGREE_TERMS'		=> "I agree to the terms and conditions",
+	'PERSON'			=> "Person",
+	'COMPANY'			=> "Company",
 	'RETYPE_PASSWORD'	=> "Retype Password",
-	'PERS_SETTINGS'	=> "Personal Settings",
+	'PERS_SETTINGS'		=> "Personal Settings",
 );
 
 $MOD_SIGNUP_MESSAGE = array(
@@ -49,6 +49,12 @@ $MOD_SIGNUP_MESSAGE = array(
 	'signup_subject'	=> "Your Signup",
 	'signup_text'		=> "You have signed up.<br />To verify your email you have to click following link:<br /><a href='%s'>Verify my email</a>",
 	'signup_info'		=> "Thanks for signing up. <br /> You will receive an email to verify your account.<br />Please check also your spamfolder.",	
+	'already_verfied' 	=> "You have already verified your email.",
+	'confirm_text'		=> "You have signed up.<br />Please login with the following password:<br />Password:<b>%s</b> <br/>You can change your password in the settings.",	
+	'signup_confirm_info' =>"Thank you for verifying your email. Signup procedure ist now complete and you can login with the password mailed to you.",
+	'error_info_admin'	=> "ERROR, this should not happen.<br /> Please inform us about this error. <br /> Thanks",
 );
+
+
 
 ?>
