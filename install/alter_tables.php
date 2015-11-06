@@ -35,7 +35,7 @@ if (!function_exists("rename_recursive_dirs")) require_once(LEPTON_PATH."/framew
 $directory = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
 $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login_standard";
 if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login/index.php")) {
-	rename( $directory,$directory_new);
+	rename_recursive_dirs( $directory,$directory_new);
 	}
 
 // move new module files to default template
