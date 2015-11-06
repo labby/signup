@@ -29,7 +29,9 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-echo "Backend - there is nothing to edit or display here.";
+
+echo ("<div class='backend_info'>'Backend - there is nothing to edit or display here.<br />Use user-access to handle users.'</div>");
+
 
 
 ?>

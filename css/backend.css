@@ -1,0 +1,20 @@
+/**
+ * @module          Signup
+ * @author          cms-lab
+ * @copyright       2014-2015 cms-lab
+ * @link            http://www.cms-lab.com
+ * @license         GNU GPL http://www.gnu.org/licenses/gpl-3.0.en.html
+ * @license_terms   none
+ *
+ */
+ 
+.backend_info  {
+    background-color: #fcfff5;
+    border: 1px solid green;
+    color: #2c662d;
+    font-size: 16px;
+    line-height: 26px;
+    margin: 30px auto 0;
+    padding: 30px;
+    width: 100%;
+}
