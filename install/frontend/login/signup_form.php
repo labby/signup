@@ -39,7 +39,7 @@ else
 /**	
  *	get the template-engine.
  */
-global $parser, $loader, $MOD_SIGNUP, $TEXT;
+global $parser, $loader, $MOD_SIGNUP, $MOD_SIGNUP_MESSAGE, $TEXT;
 if (!is_object($parser)) require_once( LEPTON_PATH."/modules/lib_twig/library.php" );
 
 // prependpath to make sure twig is looking in this module template folder first
