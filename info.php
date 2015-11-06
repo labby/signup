@@ -32,14 +32,14 @@ if (defined('LEPTON_PATH')) {
 $module_directory     = 'signup';
 $module_name          = 'Signup';
 $module_function      = 'tool';
-$module_version       = '0.1.2';
+$module_version       = '0.1.3';
 $module_platform      = '2.x';
 $module_author        = 'cms-lab';
 $module_home          = 'http://www.cms-lab.com';
 $module_guid          = '533a3e58-8193-4595-9bbc-92e713b48b58';
 $module_license       = '<a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU GPL</a>';
 $module_license_terms = 'none';
-$module_description   = 'User-management with frontend login and frontend register procedure';
+$module_description   = 'Signup with frontend login and frontend register procedure';
 
 
 ?>

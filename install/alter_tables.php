@@ -31,14 +31,14 @@ if (defined('LEPTON_PATH')) {
 
 if (!function_exists("rename_recursive_dirs")) require_once(LEPTON_PATH."/framework/functions/function.rename_recursive_dirs.php");
 
-// see if current theme has frontend_login
+// see if default template has frontend_login
 $directory = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
 $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login_standard";
 if(file_exists(LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login/index.php")) {
-	rename_recursive_dirs( $directory,$directory_new);
+	rename( $directory,$directory_new);
 	}
 
-// move new module files to current theme
+// move new module files to default template
 $directory = LEPTON_PATH.'/modules/signup/install/frontend/login';
 $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
 {
