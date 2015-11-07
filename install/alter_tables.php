@@ -57,11 +57,11 @@ $directory_new = LEPTON_PATH."/templates/".DEFAULT_TEMPLATE."/frontend/login";
 // check if group is in database
 $signup_group = array();
 $database->execute_query(
-"SELECT `name` FROM ".TABLE_PREFIX."groups WHERE `name` = 'Auto-Signup'  ",
+"SELECT * FROM ".TABLE_PREFIX."groups WHERE `name` = 'Auto-Signup'  ",
 TRUE,
 $signup_group, FALSE
 );
-if ($signup_group != 'Auto-Signup'){
+if (count ($signup_group)== 0) {
 //	create new user group if not there
   	$table = TABLE_PREFIX .'groups'; 
 	$database->query("INSERT INTO `".$table."` (`group_id`, `name`, `system_permissions`, `module_permissions`, `template_permissions`) VALUES
