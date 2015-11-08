@@ -41,7 +41,7 @@ if (true === $debug) {
 $lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
 require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
 
-global $MOD_SIGNUP, $MOD_SIGNUP_MESSAGE, $TEXT;
+global $MOD_SIGNUP, $MOD_SIGNUP_MESSAGE, $MESSAGE, $TEXT;
 
 // check $_POST for maschines
 if(isset($_POST['full_name']) and ($_POST['full_name'] != '')) {
@@ -105,11 +105,18 @@ TRUE,
 $existing_users, TRUE
 );
 
-$double = false;
+$double_mail = false;
 foreach ($existing_users as &$ref) if($ref['email'] == $_POST['email']){
-	$double = true;
+	$double_mail = true;
 	break;
 }
+
+$double_username = false;
+foreach ($existing_users as &$ref) if($ref['username'] == $_POST['username']){
+	$double_username = true;
+	break;
+}
+
 
 // create timestamp for multiple use
 $timestamp = date('Y-m-d H:i:s',time());
@@ -124,9 +131,16 @@ $confirm_signup = $_SERVER['HTTP_REFERER'].'?hash='.$hash;
 // include phpmailer
 require_once (LEPTON_PATH.'/modules/lib_phpmailer/library.php');
 
-// prevent double signup
-if ($double == true){
+// prevent double signup email
+if ($double_mail == true){
 	$_SESSION["signup_error"] = $MOD_SIGNUP_MESSAGE['already_signup'];
+	header("Location: ".$_SERVER['HTTP_REFERER']." ");
+	die();
+}
+
+// prevent double signup username
+if ($double_username == true){
+	$_SESSION["signup_error"] = $MESSAGE['USERS_USERNAME_TAKEN'];
 	header("Location: ".$_SERVER['HTTP_REFERER']." ");
 	die();
 }
