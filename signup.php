@@ -174,7 +174,7 @@ if (!$mail->send()) {
 	'group_id'	=>	'2',
 	'groups_id'	=>	'2',
 	'active'	=>	'0',	
-	'statusflags'	=>	'16',
+	'statusflags'	=>	'10',
 	'username'	=>	$_POST['username'],		
 	'password'	=>	$unix,
 	'display_name'	=>	$_POST['display_name'],

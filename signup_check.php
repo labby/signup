@@ -62,7 +62,7 @@ foreach ($email_settings as $name=>$value) {
 
 // delete users without confirmation if signup is not confirmed within 48 hours = 172800 seconds while signup page is called 
 	$database->execute_query(
-		"DELETE FROM `".TABLE_PREFIX."users`WHERE '".$unix."' > `time_unix`+172800 AND `statusflags` = 16 "
+		"DELETE FROM `".TABLE_PREFIX."users`WHERE '".$unix."' > `time_unix`+172800 AND `statusflags` = 10 "
 	);	
 
 // email verification via hash
@@ -81,7 +81,7 @@ if (isset($_GET['hash']) ) {
 	}
 
 	// prevent double verification 
-	if( $new_user['active'] == 1 and $new_user['statusflags'] == 10) {
+	if( $new_user['active'] == 1 and $new_user['statusflags'] == 16) {
 		$_SESSION["signup_error"] = $MOD_SIGNUP_MESSAGE['already_verfied'];
 		header("Location: ".LEPTON_URL."/account/signup.php ");
 		die();
@@ -89,7 +89,7 @@ if (isset($_GET['hash']) ) {
 	}
 
 	//	update new user in database
-	if( count (($new_user) == 1) and ($new_user['statusflags'] == 16)) {	
+	if( count (($new_user) == 1) and ($new_user['statusflags'] == 10)) {	
 	
 		//send mail	
 		//Create a new PHPMailer instance
@@ -118,7 +118,7 @@ if (isset($_GET['hash']) ) {
 		$fields = array(
 			'registered' => $timestamp,
 			'active'	=> '1',
-			'statusflags' => '10',
+			'statusflags' => '16',
 			'password' => $password
 		);
 			
