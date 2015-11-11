@@ -32,7 +32,7 @@ if (defined('LEPTON_PATH')) {
 $module_directory     = 'signup';
 $module_name          = 'Signup';
 $module_function      = 'tool';
-$module_version       = '0.1.3';
+$module_version       = '0.1.4';
 $module_platform      = '2.x';
 $module_author        = 'cms-lab';
 $module_home          = 'http://www.cms-lab.com';

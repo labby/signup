@@ -32,7 +32,7 @@ if (defined('LEPTON_PATH')) {
 $MOD_SIGNUP = array(
 	'LOGIN'	=> "Bitte einloggen",
 	'OR'	=> "oder",
-	'REGISTER'			=> "Regsitrieren",
+	'REGISTER'			=> "Registrieren",
 	'CHOSE_CONTACT_TYPE'=> '<p>Bitte wählen Sie einen Kontakt-Typ<br />Achtung: Der Kontakt-Typ kann nach der Regsitrierung nicht mehr geändert werden!</p>',
 	'CONTACT_TYPE'		=> "Kontakt Typ",
 	'AGREE_TERMS'		=> "Ich stimme den Bedingungen zu",
