@@ -32,15 +32,19 @@ if (defined('LEPTON_PATH')) {
 // Checking Requirements
 
 $PRECHECK['VERSION']        = array(
-    'VERSION' => '2.1.1',
+    'VERSION' => '2.1.0',
     'OPERATOR' => '>='
 );
 
 $PRECHECK['ADDONS']      = array(
+    'lib_phpmailer' => array(
+        'VERSION' => '5.2.13.2',
+        'OPERATOR' => '>='
+    ),
     'lib_semantic' => array(
         'VERSION' => '0.1',
         'OPERATOR' => '>='
-    ),
+    )	
 );
 
 ?>
