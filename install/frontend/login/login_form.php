@@ -72,7 +72,7 @@ unset($_SESSION['result_message']);
 	'TEXT_USERNAME'	=>	$TEXT['USERNAME'],
 	'TEXT_PASSWORD'	=>	$TEXT['PASSWORD'],
 	'MESSAGE'		=>	$thisApp->message,  
-	'REDIRECT_URL'	=>	'http://test3.websitebakers.de/200/page/profile.php',   
+	'REDIRECT_URL'	=>	LEPTON_URL,   
 	'TEXT_LOGIN'	=>	$MENU['LOGIN'],
 	'TEXT_LOGOUT'	=>	$MENU['LOGOUT'],
 	'TEXT_RESET'	=>	$TEXT['RESET'],

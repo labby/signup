@@ -34,9 +34,12 @@ $timestamp = date('Y-m-d H:i:s',time());
 $unix = time();
 
 // create a random password
+if (!function_exists('password_hash')) {
+	require_once (LEPTON_PATH.'/modules/lib_lepton/hash/password.php');
+} 
 require_once( LEPTON_PATH."/framework/functions/function.random_string.php" );
 $generate_pass = random_string(10,'pass');
-$password = md5($generate_pass);
+$password = password_hash($generate_pass, PASSWORD_DEFAULT );
 
 //Get all settings 
 $settings = array();
