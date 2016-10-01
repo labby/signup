@@ -5,7 +5,7 @@ Signup extends the standard [LEPTON CMS][1] signup routine
 
 #### Requirements
 
-* [LEPTON CMS][1], Version > 2.1.0
+* [LEPTON CMS][1], Version see precheck.php
 * include jquery and semantic in your frontend template
 * standard signup/login routine in your frontend template or use LEPTON standard template 
 
