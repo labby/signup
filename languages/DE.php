@@ -50,8 +50,8 @@ $MOD_SIGNUP_MESSAGE = array(
 	'signup_text'	=> "Sie haben sich registriert.<br />Zur Verifizierung Ihrer Mail-Adresse klicken Sie bitte auf folgenden Link:<br /><a href='%s'>Email Verifizierung</a>",
 	'signup_info'	=> "Danke für die Registrierung. <br /> Sie werden eine Email erhalten, um Ihre Email-Adresse zu verifizieren.<br />Bitte prüfen Sie auch ihr Spamverzeichnis.",
 	'already_verfied' => "Sie haben Ihre Mailadresse bereits verifiziert.",
-	'confirm_text'	=> "Sie haben sich auf unserer Seite angemeldet.<br />Bitte loggen Sie sich mit folgendem Passwort ein:<br />Passwort:<b>%s</b> <br/>Sie können das Passwort unter Einstellungen ändern.",	
-	'signup_confirm_info' =>"Danke für die Verifizierung der Email-Adresse. Sie sind nun registriert und können sich mit dem Passwort einloggen, dass wir Ihnen zugesendet haben.",
+	'confirm_text'	=> "Sie haben sich auf unserer Seite angemeldet.<br />Zur Eingabe Ihres Passwortes klicken Sie bitte auf folgenden Link:<br /><a href='%s'>Passworteingabe</a>",
+	'signup_confirm_info' =>"Danke für die Verifizierung der Email-Adresse. Sie erhalten eine Mail, um Ihr Passwort einzutragen.",
 	'error_info_admin'	=> "FEHLER,das sollte nicht sein.<br /> Bitte informieren Sie uns über diesen Fehler. <br /> Danke",
 );
 ?>

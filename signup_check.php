@@ -41,6 +41,9 @@ require_once( LEPTON_PATH."/framework/functions/function.random_string.php" );
 $generate_pass = random_string(10,'pass');
 $password = password_hash($generate_pass, PASSWORD_DEFAULT );
 
+// create confirmation link
+$enter_pw_link = LEPTON_URL.'/account/new_password.php?hash='.$unix.'&signup=1';
+
 //Get all settings 
 $settings = array();
 $database->execute_query(
@@ -105,12 +108,12 @@ if (isset($_GET['hash']) ) {
 		//Set who the message is to be sent to
 		$mail->addAddress($new_user['email'], $new_user['display_name']);
 		//Send bcc to admin
-		$mail->addBCC($email_settings['server_email'],$email_settings['wbmailer_default_sendername']);
+//		$mail->addBCC($email_settings['server_email'],$email_settings['wbmailer_default_sendername']);
 		//Set the subject line
 		$mail->Subject = $MOD_SIGNUP_MESSAGE['signup_subject'];
 		//Switch to TEXT messages
 		$mail->IsHTML(true);
-		$mail->Body = sprintf($MOD_SIGNUP_MESSAGE['confirm_text'],$generate_pass);	
+		$mail->Body = sprintf($MOD_SIGNUP_MESSAGE['confirm_text'],$enter_pw_link);	
 
 		//send the message, check for errors
 		if (!$mail->send()) {
@@ -120,6 +123,7 @@ if (isset($_GET['hash']) ) {
 		}
 		$fields = array(
 			'registered' => $timestamp,
+			'login_ip' => $unix,
 			'active'	=> '1',
 			'statusflags' => '16',
 			'password' => $password
@@ -131,7 +135,34 @@ if (isset($_GET['hash']) ) {
 			$fields,
 			"`hash`='".$new_user['hash']."'"
 		);
-			
+	
+		// Send info to admin
+		$mail = new PHPMailer;
+		$mail->CharSet = DEFAULT_CHARSET;	
+		//Set who the message is to be sent from
+		$mail->setFrom(SERVER_EMAIL);
+		//Set who the message is to be sent to
+		$mail->addAddress(SERVER_EMAIL);					
+		//Set the subject line
+		$mail->Subject = $MESSAGE['SIGNUP2_ADMIN_SUBJECT'];
+		//Switch to TEXT messages
+		$mail->IsHTML(true);
+		// Replace placeholders from language variable with values
+		$values = array(
+			"\n"	=> "<br />",
+			'{LOGIN_NAME}'	 =>  $new_user['display_name'],
+			'{LOGIN_ID}'	 =>  $new_user['user_id'],
+			'{LOGIN_EMAIL}'	 =>  $new_user['email'],
+			'{LOGIN_IP}'	 =>  $_SERVER['REMOTE_ADDR'],
+			'{SIGNUP_DATE}'	 =>  date("Y.m.d H:i:s")	
+		);
+		$mail_message = str_replace( array_keys($values), array_values($values),$MESSAGE['SIGNUP2_ADMIN_INFO']);
+		$mail->Body = $mail_message;		
+
+		//send the message, check for errors
+		$mail->send();	
+
+		
 		//	set up the success-message
 		$_SESSION["signup_message"] = $MOD_SIGNUP_MESSAGE['signup_confirm_info'];
 		header("Location: ".LEPTON_URL."/account/signup.php ");		

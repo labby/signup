@@ -50,8 +50,8 @@ $MOD_SIGNUP_MESSAGE = array(
 	'signup_text'		=> "You have signed up.<br />To verify your email you have to click following link:<br /><a href='%s'>Verify my email</a>",
 	'signup_info'		=> "Thanks for signing up. <br /> You will receive an email to verify your account.<br />Please check also your spamfolder.",	
 	'already_verfied' 	=> "You have already verified your email.",
-	'confirm_text'		=> "You have signed up.<br />Please login with the following password:<br />Password:<b>%s</b> <br/>You can change your password in the settings.",	
-	'signup_confirm_info' =>"Thank you for verifying your email. Signup procedure ist now complete and you can login with the password mailed to you.",
+	'confirm_text'		=> "You have signed up.<br />To enter a passwor plaease click the following link:<br /><a href='%s'>Enter password</a>",
+	'signup_confirm_info' =>"Thank you for verifying your email. You will get an mail to enter your password.",
 	'error_info_admin'	=> "ERROR, this should not happen.<br /> Please inform us about this error. <br /> Thanks",
 );
 
